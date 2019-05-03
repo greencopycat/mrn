@@ -1,0 +1,21 @@
+version: "3.7"
+services:
+    app:
+        image: greencopycat/mrn-reactapp
+        restart: always
+        build:
+            context: ./reactapp/
+            dockerfile: Dockerfile
+        depends_on:
+            - nodejs
+        ports:
+            - "3000:3000"
+    nodejs:
+        restart: always
+        image: greencopycat/mrn-nodejs
+        build:
+            context: ./nodejs/
+            dockerfile: Dockerfile
+        ports:
+            - "3002:3002"
+            - "27017:27017"
